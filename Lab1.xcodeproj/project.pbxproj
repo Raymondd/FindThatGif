@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F8BF6DA1A81E9D5008C60E1 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF6D91A81E9D5008C60E1 /* SettingsTableViewController.m */; };
+		9F8BF6DD1A81F0D2008C60E1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF6DC1A81F0D2008C60E1 /* MainViewController.m */; };
 		9F9902AD1A7F575000B6159B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9902AC1A7F575000B6159B /* main.m */; };
 		9F9902B01A7F575000B6159B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9902AF1A7F575000B6159B /* AppDelegate.m */; };
 		9F9902B31A7F575000B6159B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9902B21A7F575000B6159B /* ViewController.m */; };
@@ -29,6 +31,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F8BF6D81A81E9D5008C60E1 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		9F8BF6D91A81E9D5008C60E1 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		9F8BF6DB1A81F0D2008C60E1 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		9F8BF6DC1A81F0D2008C60E1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		9F9902A71A7F575000B6159B /* Lab1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lab1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9902AB1A7F575000B6159B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F9902AC1A7F575000B6159B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -94,7 +100,11 @@
 				9F9902D51A7F581900B6159B /* DataModel.m */,
 				9F9902B21A7F575000B6159B /* ViewController.m */,
 				9F9902B41A7F575000B6159B /* Main.storyboard */,
+				9F8BF6DB1A81F0D2008C60E1 /* MainViewController.h */,
+				9F8BF6DC1A81F0D2008C60E1 /* MainViewController.m */,
 				9F9902D71A7F5E3700B6159B /* RootTableViewController.h */,
+				9F8BF6D81A81E9D5008C60E1 /* SettingsTableViewController.h */,
+				9F8BF6D91A81E9D5008C60E1 /* SettingsTableViewController.m */,
 				9F9902D81A7F5E3700B6159B /* RootTableViewController.m */,
 				9F9902B71A7F575000B6159B /* Images.xcassets */,
 				9F9902B91A7F575000B6159B /* LaunchScreen.xib */,
@@ -229,8 +239,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F8BF6DA1A81E9D5008C60E1 /* SettingsTableViewController.m in Sources */,
 				9F9902D91A7F5E3700B6159B /* RootTableViewController.m in Sources */,
 				9F9902B31A7F575000B6159B /* ViewController.m in Sources */,
+				9F8BF6DD1A81F0D2008C60E1 /* MainViewController.m in Sources */,
 				9F9902D61A7F581900B6159B /* DataModel.m in Sources */,
 				9F9902B01A7F575000B6159B /* AppDelegate.m in Sources */,
 				9F9902AD1A7F575000B6159B /* main.m in Sources */,
@@ -312,7 +324,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -347,7 +359,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
