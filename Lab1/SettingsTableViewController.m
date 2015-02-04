@@ -34,21 +34,38 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 5;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    return 3;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text = @"Test";
+    UITableViewCell *cell;
+
+    switch (indexPath.row) {
+        case 0:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"myCell1" forIndexPath:indexPath];
+            cell.textLabel.text = @"About Us";
+            break;
+        case 1:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"myCell2" forIndexPath:indexPath];
+            cell.textLabel.text = @"Change Refresh Rate";
+            break;
+        case 2:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"myCell3" forIndexPath:indexPath];
+            cell.textLabel.text = @"Search History";
+            break;
+        default:
+            break;
+    }
+    
     
     return cell;
 }
