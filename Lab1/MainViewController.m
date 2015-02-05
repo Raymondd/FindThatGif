@@ -14,7 +14,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *identityLabel;
 @property (weak, nonatomic) IBOutlet UITextField *searchBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
-@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *clock;
+@property (strong, nonatomic) NSTimer *timer;
+@property int currentTime;
+@property int refreshTime;
 @end
 
 @implementation MainViewController
@@ -30,6 +33,27 @@
     self.searchBar.delegate = self;
     
     //creating a timer
+    _timer = [NSTimer scheduledTimerWithTimeInterval: 1.0
+                                              target: self
+                                            selector: @selector(onTick:)
+                                            userInfo: nil
+                                             repeats: YES];
+    //chnage this using the dataModel
+    _refreshTime = 10;
+    _currentTime = 0;
+}
+
+-(void)onTick:(NSTimer *) theTimer
+{
+    int time = _refreshTime - _currentTime;
+    self.clock.text = [NSString stringWithFormat:@"%d", time];
+    
+    if(time < 1){
+        //refresh the pictures
+        _currentTime = 0;
+    }else{
+        _currentTime++;
+    }
 }
 
 

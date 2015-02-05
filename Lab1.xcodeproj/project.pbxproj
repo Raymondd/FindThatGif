@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9F8BF6DA1A81E9D5008C60E1 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF6D91A81E9D5008C60E1 /* SettingsTableViewController.m */; };
 		9F8BF6DD1A81F0D2008C60E1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF6DC1A81F0D2008C60E1 /* MainViewController.m */; };
+		9F8BF6E91A83042C008C60E1 /* RefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF6E81A83042C008C60E1 /* RefreshViewController.m */; };
+		9F8BF6EC1A831897008C60E1 /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF6EB1A831897008C60E1 /* HistoryTableViewController.m */; };
 		9F9902AD1A7F575000B6159B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9902AC1A7F575000B6159B /* main.m */; };
 		9F9902B01A7F575000B6159B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9902AF1A7F575000B6159B /* AppDelegate.m */; };
 		9F9902B31A7F575000B6159B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9902B21A7F575000B6159B /* ViewController.m */; };
@@ -35,6 +37,10 @@
 		9F8BF6D91A81E9D5008C60E1 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		9F8BF6DB1A81F0D2008C60E1 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		9F8BF6DC1A81F0D2008C60E1 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		9F8BF6E71A83042C008C60E1 /* RefreshViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshViewController.h; sourceTree = "<group>"; };
+		9F8BF6E81A83042C008C60E1 /* RefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshViewController.m; sourceTree = "<group>"; };
+		9F8BF6EA1A831897008C60E1 /* HistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewController.h; sourceTree = "<group>"; };
+		9F8BF6EB1A831897008C60E1 /* HistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewController.m; sourceTree = "<group>"; };
 		9F9902A71A7F575000B6159B /* Lab1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lab1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9902AB1A7F575000B6159B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F9902AC1A7F575000B6159B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -104,6 +110,10 @@
 				9F8BF6DC1A81F0D2008C60E1 /* MainViewController.m */,
 				9F9902D71A7F5E3700B6159B /* RootTableViewController.h */,
 				9F8BF6D81A81E9D5008C60E1 /* SettingsTableViewController.h */,
+				9F8BF6E71A83042C008C60E1 /* RefreshViewController.h */,
+				9F8BF6EA1A831897008C60E1 /* HistoryTableViewController.h */,
+				9F8BF6EB1A831897008C60E1 /* HistoryTableViewController.m */,
+				9F8BF6E81A83042C008C60E1 /* RefreshViewController.m */,
 				9F8BF6D91A81E9D5008C60E1 /* SettingsTableViewController.m */,
 				9F9902D81A7F5E3700B6159B /* RootTableViewController.m */,
 				9F9902B71A7F575000B6159B /* Images.xcassets */,
@@ -239,6 +249,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F8BF6EC1A831897008C60E1 /* HistoryTableViewController.m in Sources */,
+				9F8BF6E91A83042C008C60E1 /* RefreshViewController.m in Sources */,
 				9F8BF6DA1A81E9D5008C60E1 /* SettingsTableViewController.m in Sources */,
 				9F9902D91A7F5E3700B6159B /* RootTableViewController.m in Sources */,
 				9F9902B31A7F575000B6159B /* ViewController.m in Sources */,
