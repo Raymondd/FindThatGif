@@ -7,9 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FLAnimatedImage.h"
+#import "FLAnimatedImageView.h"
 
 @interface DataModel : NSObject
 
-+(DataModel*) getSharedInstance;
+@property (nonatomic) NSInteger limit;
+@property (strong, nonatomic) NSMutableArray* history;
+@property (nonatomic) NSInteger offset;
+@property (strong, nonatomic) NSString* maturityRating;
+@property (nonatomic) BOOL shouldRefresh;
 
+
++(DataModel*) getSharedInstance;
+-(NSMutableArray*) getTrendingGIFS;
+-(NSMutableArray*) getRandomGIFS;
+-(NSMutableArray*) getGIFS: (NSString*)searchTerm;
 @end
