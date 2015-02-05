@@ -26,14 +26,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <label key="backgroundView" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Hw-s5-7PC">
-                                    <rect key="frame" x="0.0" y="0.0" width="623" height="419"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="568" height="450"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="pdX-wJ-vxr">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="myCell" id="pdX-wJ-vxr" customClass="GifCollectionViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -101,7 +101,7 @@
                     <connections>
                         <outlet property="clock" destination="eRS-t2-Rsw" id="FhL-VJ-fE5"/>
                         <outlet property="identityLabel" destination="4Hw-s5-7PC" id="26P-k9-5Qd"/>
-                        <outlet property="mainCollectionView" destination="QHx-46-r4c" id="TR0-pm-zw0"/>
+                        <outlet property="myCollectionView" destination="QHx-46-r4c" id="mnH-uF-tEk"/>
                         <outlet property="searchBar" destination="Sm9-WA-EMO" id="ja1-rq-c0Z"/>
                         <outlet property="segmentedControl" destination="6LH-j0-Oqu" id="gTS-Pp-xN4"/>
                         <outlet property="settingsButton" destination="4K8-z0-uSU" id="Bdf-gp-ns1"/>

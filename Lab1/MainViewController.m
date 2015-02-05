@@ -7,6 +7,8 @@
 //
 
 #import "MainViewController.h"
+#import "DataModel.h"
+#import "GifCollectionViewCell.h"
 
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
@@ -15,12 +17,14 @@
 @property (weak, nonatomic) IBOutlet UITextField *searchBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 @property (weak, nonatomic) IBOutlet UILabel *clock;
+@property (strong, nonatomic) DataModel *myDataModel;
 @property (strong, nonatomic) NSTimer *timer;
 @property int currentTime;
 @property int refreshTime;
 @end
 
 @implementation MainViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,6 +45,18 @@
     //chnage this using the dataModel
     _refreshTime = 10;
     _currentTime = 0;
+    
+    //settings our delegate and data source for our collection view
+    _myCollectionView.delegate = self;
+    _myCollectionView.dataSource = self;
+}
+
+-(DataModel*) myDataModel{
+    if(!_myDataModel){
+        _myDataModel = [DataModel sharedInstance];
+    }
+    
+    return _myDataModel;
 }
 
 -(void)onTick:(NSTimer *) theTimer
@@ -81,6 +97,30 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView*)collectionView {
+    // _data is a class member variable that contains one array per section.
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section {
+    //NSArray* sectionArray = [_data objectAtIndex:section];
+    return 10;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+     GifCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"myCell" forIndexPath:indexPath];
+    
+    // Configure the cell
+    cell.backgroundColor = [UIColor blueColor];
+    //load th gid into here.>>
+    cell.imageView.image = [_myDataModel getTrendingGIFS][0];
+    
+    return cell;
+}
+
+
 
 /*
 #pragma mark - Navigation

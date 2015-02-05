@@ -11,6 +11,9 @@
 		9F8BF6DD1A81F0D2008C60E1 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF6DC1A81F0D2008C60E1 /* MainViewController.m */; };
 		9F8BF6E91A83042C008C60E1 /* RefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF6E81A83042C008C60E1 /* RefreshViewController.m */; };
 		9F8BF6EC1A831897008C60E1 /* HistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF6EB1A831897008C60E1 /* HistoryTableViewController.m */; };
+		9F8BF6F11A8335E3008C60E1 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF6EE1A8335E3008C60E1 /* FLAnimatedImage.m */; };
+		9F8BF6F21A8335E3008C60E1 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF6F01A8335E3008C60E1 /* FLAnimatedImageView.m */; };
+		9F8BF6F51A833A20008C60E1 /* GifCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF6F41A833A20008C60E1 /* GifCollectionViewCell.m */; };
 		9F9902AD1A7F575000B6159B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9902AC1A7F575000B6159B /* main.m */; };
 		9F9902B01A7F575000B6159B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9902AF1A7F575000B6159B /* AppDelegate.m */; };
 		9F9902B31A7F575000B6159B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9902B21A7F575000B6159B /* ViewController.m */; };
@@ -41,6 +44,12 @@
 		9F8BF6E81A83042C008C60E1 /* RefreshViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshViewController.m; sourceTree = "<group>"; };
 		9F8BF6EA1A831897008C60E1 /* HistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewController.h; sourceTree = "<group>"; };
 		9F8BF6EB1A831897008C60E1 /* HistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewController.m; sourceTree = "<group>"; };
+		9F8BF6ED1A8335E3008C60E1 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
+		9F8BF6EE1A8335E3008C60E1 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
+		9F8BF6EF1A8335E3008C60E1 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		9F8BF6F01A8335E3008C60E1 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
+		9F8BF6F31A833A20008C60E1 /* GifCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GifCollectionViewCell.h; sourceTree = "<group>"; };
+		9F8BF6F41A833A20008C60E1 /* GifCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GifCollectionViewCell.m; sourceTree = "<group>"; };
 		9F9902A71A7F575000B6159B /* Lab1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lab1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F9902AB1A7F575000B6159B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F9902AC1A7F575000B6159B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -99,6 +108,10 @@
 		9F9902A91A7F575000B6159B /* Lab1 */ = {
 			isa = PBXGroup;
 			children = (
+				9F8BF6ED1A8335E3008C60E1 /* FLAnimatedImage.h */,
+				9F8BF6EE1A8335E3008C60E1 /* FLAnimatedImage.m */,
+				9F8BF6EF1A8335E3008C60E1 /* FLAnimatedImageView.h */,
+				9F8BF6F01A8335E3008C60E1 /* FLAnimatedImageView.m */,
 				9F9902AE1A7F575000B6159B /* AppDelegate.h */,
 				9F9902AF1A7F575000B6159B /* AppDelegate.m */,
 				9F9902B11A7F575000B6159B /* ViewController.h */,
@@ -108,6 +121,8 @@
 				9F9902B41A7F575000B6159B /* Main.storyboard */,
 				9F8BF6DB1A81F0D2008C60E1 /* MainViewController.h */,
 				9F8BF6DC1A81F0D2008C60E1 /* MainViewController.m */,
+				9F8BF6F31A833A20008C60E1 /* GifCollectionViewCell.h */,
+				9F8BF6F41A833A20008C60E1 /* GifCollectionViewCell.m */,
 				9F9902D71A7F5E3700B6159B /* RootTableViewController.h */,
 				9F8BF6D81A81E9D5008C60E1 /* SettingsTableViewController.h */,
 				9F8BF6E71A83042C008C60E1 /* RefreshViewController.h */,
@@ -251,11 +266,14 @@
 			files = (
 				9F8BF6EC1A831897008C60E1 /* HistoryTableViewController.m in Sources */,
 				9F8BF6E91A83042C008C60E1 /* RefreshViewController.m in Sources */,
+				9F8BF6F11A8335E3008C60E1 /* FLAnimatedImage.m in Sources */,
 				9F8BF6DA1A81E9D5008C60E1 /* SettingsTableViewController.m in Sources */,
 				9F9902D91A7F5E3700B6159B /* RootTableViewController.m in Sources */,
 				9F9902B31A7F575000B6159B /* ViewController.m in Sources */,
 				9F8BF6DD1A81F0D2008C60E1 /* MainViewController.m in Sources */,
+				9F8BF6F51A833A20008C60E1 /* GifCollectionViewCell.m in Sources */,
 				9F9902D61A7F581900B6159B /* DataModel.m in Sources */,
+				9F8BF6F21A8335E3008C60E1 /* FLAnimatedImageView.m in Sources */,
 				9F9902B01A7F575000B6159B /* AppDelegate.m in Sources */,
 				9F9902AD1A7F575000B6159B /* main.m in Sources */,
 			);

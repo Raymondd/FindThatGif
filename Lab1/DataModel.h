@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FLAnimatedImage.h"
 #import "FLAnimatedImageView.h"
+#import "UIKit/UIKit.h"
 
 @interface DataModel : NSObject
 
@@ -19,7 +20,7 @@
 @property (nonatomic) BOOL shouldRefresh;
 
 
-+(DataModel*) getSharedInstance;
++(DataModel*) sharedInstance;
 -(NSMutableArray*) getTrendingGIFS;
 -(NSMutableArray*) getRandomGIFS;
 -(NSMutableArray*) getGIFS: (NSString*)searchTerm;

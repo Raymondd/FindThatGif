@@ -7,6 +7,7 @@
 //
 
 #import "RefreshViewController.h"
+#import "DataModel.h"
 
 @interface RefreshViewController ()
 @property (weak, nonatomic) IBOutlet UISwitch *refSwitch;
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *returns;
 @property (weak, nonatomic) IBOutlet UIPickerView *matPicker;
 @property (strong, nonatomic) NSArray *pickerData;
+@property (strong, nonatomic) DataModel *myDataModel;
 - (IBAction)sliderChanged:(UISlider *)sender;
 - (IBAction)refreshSwitched:(UISwitch *)sender;
 - (IBAction)stepped:(UIStepper *)sender;
@@ -41,6 +43,14 @@
     
 }
 
+//lazy instantiation of the data model
+-(DataModel*) myDataModel{
+    if(!_myDataModel){
+        _myDataModel = [DataModel sharedInstance];
+    }
+    
+    return _myDataModel;
+}
 
 
 /*
@@ -62,9 +72,11 @@
     if(self.refSwitch.on){
         self.rateText .textColor  = [UIColor blackColor];
         self.time.textColor = [UIColor blackColor];
+        _myDataModel.shouldRefresh = YES;
     }else{
         self.rateText .textColor  = [UIColor grayColor];
         self.time.textColor = [UIColor grayColor];
+        _myDataModel.shouldRefresh = NO;
     }
     
 }

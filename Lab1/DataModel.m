@@ -11,7 +11,7 @@
 @implementation DataModel
 
 //gets the shared instance of our model
-+(DataModel*) getSharedInstance{
++(DataModel*) sharedInstance{
     static DataModel* _sharedInstance = nil;
     
     static dispatch_once_t oncePredicate;
@@ -21,6 +21,8 @@
     dispatch_once(&oncePredicate, ^{
         _sharedInstance = [[DataModel alloc] init];
     });
+    
+    _sharedInstance.limit = 10;
     
     return _sharedInstance;
 }

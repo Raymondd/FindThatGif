@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 
-@interface MainViewController : ViewController
+@interface MainViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
+@property (nonatomic, retain) IBOutlet UICollectionView *myCollectionView;
 @end
