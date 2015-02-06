@@ -14,7 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *time;
 @property (weak, nonatomic) IBOutlet UIStepper *timeStepper;
 @property (weak, nonatomic) IBOutlet UISlider *timeSlider;
-@property (weak, nonatomic) IBOutlet UIPickerView *maturityPicker;
 @property (weak, nonatomic) IBOutlet UILabel *rateText;
 @property (weak, nonatomic) IBOutlet UILabel *returns;
 @property (weak, nonatomic) IBOutlet UIPickerView *matPicker;
@@ -37,10 +36,30 @@
     _pickerData = @[@"y", @"g", @"pg-13", @"r"];
     
     //setting previously held values
-    self.time.text = @"10";
-    self.timeStepper.value = 10;
-    self.returns.text = @"10";
     
+    self.timeStepper.value = self.myDataModel.refreshRate;
+    NSLog(@"Refresh Rate: %li", (long)self.myDataModel.refreshRate);
+    
+    
+    self.time.text = [NSString stringWithFormat:@"%i", (int)self.timeStepper.value];
+    self.timeSlider.value = ((long)self.myDataModel.numToLoad / 20.0);
+    self.returns.text = [NSString stringWithFormat:@"%i", self.myDataModel.numToLoad];
+    
+    
+    [self.matPicker selectRow:_myDataModel.maturityRating inComponent:0 animated:YES];
+    
+    [self.refSwitch setOn:self.myDataModel.shouldRefresh animated:NO];
+    
+    if(self.refSwitch.on){
+        self.rateText .textColor  = [UIColor blackColor];
+        self.time.textColor = [UIColor blackColor];
+        
+        self.myDataModel.shouldRefresh = YES;
+    }else{
+        self.rateText .textColor  = [UIColor grayColor];
+        self.time.textColor = [UIColor grayColor];
+        self.myDataModel.shouldRefresh = NO;
+    }
 }
 
 //lazy instantiation of the data model
@@ -64,7 +83,9 @@
 */
 
 - (IBAction)sliderChanged:(UISlider *)sender {
-    self.returns.text = [NSString stringWithFormat:@"%d", ((int) (self.timeSlider.value * 20))];
+    NSInteger value = ((int) (self.timeSlider.value * 20));
+    self.returns.text = [NSString stringWithFormat:@"%ld", (long)value];
+    self.myDataModel.numToLoad = value;
 }
 
 - (IBAction)refreshSwitched:(UISwitch *)sender {
@@ -72,11 +93,12 @@
     if(self.refSwitch.on){
         self.rateText .textColor  = [UIColor blackColor];
         self.time.textColor = [UIColor blackColor];
-        _myDataModel.shouldRefresh = YES;
+        
+        self.myDataModel.shouldRefresh = YES;
     }else{
         self.rateText .textColor  = [UIColor grayColor];
         self.time.textColor = [UIColor grayColor];
-        _myDataModel.shouldRefresh = NO;
+        self.myDataModel.shouldRefresh = NO;
     }
     
 }
@@ -85,6 +107,11 @@
     double value = [sender value];
         
     [self.time setText:[NSString stringWithFormat:@"%d", (int)value]];
+    self.myDataModel.refreshRate = (int)value;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    self.myDataModel.maturityRating = row;
 }
 
 // The number of columns of data

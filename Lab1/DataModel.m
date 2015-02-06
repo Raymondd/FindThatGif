@@ -9,6 +9,7 @@
 #import "DataModel.h"
 @interface DataModel()
 @property (strong, nonatomic) NSString* returnURL;
+@property (strong, nonatomic) NSArray* pickerData;
 
 @end
 
@@ -24,15 +25,19 @@
     //otherwise we return the pointer
     dispatch_once(&oncePredicate, ^{
         _sharedInstance = [[DataModel alloc] init];
+        _sharedInstance.numToLoad = 1;
+        _sharedInstance.refreshRate =10;
+        _sharedInstance.maturityRating = 3;
+        _sharedInstance.shouldRefresh = NO;
+        _sharedInstance.history = [[NSMutableArray alloc] initWithCapacity:20];
+        _sharedInstance.pickerData = @[@"y", @"g", @"pg-13", @"r"];
     });
     
-    _sharedInstance.limit = 10;
     
     return _sharedInstance;
 }
-
 -(NSMutableArray*) getTrendingGIFS{
-    NSMutableArray* gifs = [NSMutableArray arrayWithCapacity:self.limit];
+    NSMutableArray* gifs = [NSMutableArray arrayWithCapacity:self.numToLoad];
     
     // construct url for trending request and make request
     NSString *apiURL = @"http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC";
@@ -48,7 +53,7 @@
          {
              NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
              
-             for(NSInteger i = 0;i < self.limit; i++ ) {
+             for(NSInteger i = 0;i < self.numToLoad; i++ ) {
                  // get path to GIF and push onto gif array
                  NSString *path = [[greeting valueForKey:@"data"][i] valueForKeyPath: @"images.fixed_width.url"];
                  NSURL *dataURL = [NSURL URLWithString:path];
@@ -65,24 +70,30 @@
     
 }
 
+
 -(NSString*) getTrendingGIFURLWithOffest:(NSInteger)row{
-    _returnURL = [NSString stringWithFormat: @"http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC&limit=1&offset=%ld", (long)row];
+    _returnURL = [NSString stringWithFormat: @"http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC&limit=1&offset=%ld&rating=%@", (long)row, self.pickerData[self.maturityRating]];
+    return _returnURL;
+}
+
+-(NSString*) getRandomGIFURL{
+    _returnURL = [NSString stringWithFormat: @"http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&rating=%@", self.pickerData[self.maturityRating]];
     return _returnURL;
 }
 
 -(NSString*) getSearchGIFURLWithOffest:(NSInteger)row withTerm:(NSString*)searchTerm{
-    _returnURL = [NSString stringWithFormat: @"http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=1&q=%@&offset=%ld", searchTerm, (long)row];
-    NSLog(_returnURL);
+    NSString * formattedSearchString = [searchTerm stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    _returnURL = [NSString stringWithFormat: @"http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=1&q=%@&offset=%ld&rating=%@", formattedSearchString, (long)row, self.pickerData[self.maturityRating]];
     return _returnURL;
 }
 
 -(NSMutableArray*) getRandomGIFS{
-    NSMutableArray* gifs = [NSMutableArray arrayWithCapacity:self.limit];
+    NSMutableArray* gifs = [NSMutableArray arrayWithCapacity:self.numToLoad];
     return gifs;
 }
 
 -(NSMutableArray*) getGIFS: (NSString*)searchTerm{
-    NSMutableArray* gifs = [NSMutableArray arrayWithCapacity:self.limit];
+    NSMutableArray* gifs = [NSMutableArray arrayWithCapacity:self.numToLoad];
     return gifs;
 }
 

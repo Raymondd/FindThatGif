@@ -23,6 +23,7 @@
 		9F9902C71A7F575000B6159B /* Lab1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9902C61A7F575000B6159B /* Lab1Tests.m */; };
 		9F9902D61A7F581900B6159B /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9902D51A7F581900B6159B /* DataModel.m */; };
 		9F9902D91A7F5E3700B6159B /* RootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9902D81A7F5E3700B6159B /* RootTableViewController.m */; };
+		9FFFC0BA1A855E8E00BEF51B /* UsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFFC0B91A855E8E00BEF51B /* UsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		9F9902D51A7F581900B6159B /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
 		9F9902D71A7F5E3700B6159B /* RootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTableViewController.h; sourceTree = "<group>"; };
 		9F9902D81A7F5E3700B6159B /* RootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTableViewController.m; sourceTree = "<group>"; };
+		9FFFC0B81A855E8E00BEF51B /* UsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsViewController.h; sourceTree = "<group>"; };
+		9FFFC0B91A855E8E00BEF51B /* UsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +111,8 @@
 		9F9902A91A7F575000B6159B /* Lab1 */ = {
 			isa = PBXGroup;
 			children = (
+				9FFFC0B81A855E8E00BEF51B /* UsViewController.h */,
+				9FFFC0B91A855E8E00BEF51B /* UsViewController.m */,
 				9F8BF6ED1A8335E3008C60E1 /* FLAnimatedImage.h */,
 				9F8BF6EE1A8335E3008C60E1 /* FLAnimatedImage.m */,
 				9F8BF6EF1A8335E3008C60E1 /* FLAnimatedImageView.h */,
@@ -267,6 +272,7 @@
 			files = (
 				9F8BF6EC1A831897008C60E1 /* HistoryTableViewController.m in Sources */,
 				9F8BF6E91A83042C008C60E1 /* RefreshViewController.m in Sources */,
+				9FFFC0BA1A855E8E00BEF51B /* UsViewController.m in Sources */,
 				9F8BF6F11A8335E3008C60E1 /* FLAnimatedImage.m in Sources */,
 				9F8BF6DA1A81E9D5008C60E1 /* SettingsTableViewController.m in Sources */,
 				9F9902D91A7F5E3700B6159B /* RootTableViewController.m in Sources */,

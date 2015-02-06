@@ -21,6 +21,10 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *myCollView;
 @property int currentTime;
 @property int refreshTime;
+
+-(void)loadTrendingOrSearchGif:(NSIndexPath*) indexPath GifCell:(GifCollectionViewCell*)cell GIFURL:(NSString*)url;
+-(void)loadRandomGif:(NSIndexPath*) indexPath GifCell:(GifCollectionViewCell*)cell;
+
 @end
 
 @implementation MainViewController
@@ -39,13 +43,17 @@
                                             selector: @selector(onTick:)
                                             userInfo: nil
                                              repeats: YES];
-    //chnage this using the dataModel
-    _refreshTime = 10;
+    //change this using the dataModel
+    _refreshTime = self.myDataModel.refreshRate;
     _currentTime = 0;
     
     //settings our delegate and data source for our collection view
     _myCollectionView.delegate = self;
     _myCollectionView.dataSource = self;
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self.myCollectionView reloadData];
 }
 
 -(DataModel*) myDataModel{
@@ -58,28 +66,35 @@
 
 -(void)onTick:(NSTimer *) theTimer
 {
-    int time = _refreshTime - _currentTime;
-    self.clock.text = [NSString stringWithFormat:@"%d", time];
+    if(_myDataModel.shouldRefresh){
+        int time = _refreshTime - _currentTime;
+        self.clock.text = [NSString stringWithFormat:@"%d", time];
     
-    if(time < 1){
-        //refresh the pictures
-        _currentTime = 0;
-        [self.myCollectionView reloadData];
+        if(time < 1){
+            //refresh the pictures
+            _currentTime = 0;
+            [self.myCollectionView reloadData];
+            _refreshTime = self.myDataModel.refreshRate;
+        }else{
+            _currentTime++;
+        }
     }else{
-        _currentTime++;
+        self.clock.text = @"Refresh Off";
     }
 }
 
 
 -(IBAction)indexChanged:(UISegmentedControl *)sender
 {
-
     [self.myCollectionView reloadData];
+    [self.myCollectionView setContentOffset:CGPointZero animated:NO];
 }
 
 //function to close keybaord when return is hit
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    [self.myDataModel.history addObject:self.searchBar.text];
     [self.myCollectionView reloadData];
+    [self.myCollectionView setContentOffset:CGPointZero animated:NO];
     [textField resignFirstResponder];
     return YES;
 }
@@ -91,7 +106,7 @@
 
 - (NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section {
     //NSArray* sectionArray = [_data objectAtIndex:section];
-    return 10;
+    return self.myDataModel.numToLoad;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -100,38 +115,36 @@
     
     // Configure the cell
     cell.backgroundColor = [UIColor whiteColor];
-    //load th gid into here.>>
-    //UIImage *image = [UIImage imageNamed:@"sloth1"];
     
-
-    //FLAnimatedImage *image = [_myDataModel getTrendingGIFS][0];
-    //NSLog(@"There are %d gifs", [_myDataModel getTrendingGIFS].count);
-    //cell.imageView.image = image;
     
-    NSString *stringURL = @"_";
+    //URLs are formatted using our datamodel
+    NSString *stringURL;
     switch (self.segmentedControl.selectedSegmentIndex)
     {
         case 0:
-            //handle trending
-            stringURL = [self.myDataModel getTrendingGIFURLWithOffest:indexPath.row*2];
+            stringURL = [self.myDataModel getTrendingGIFURLWithOffest:indexPath.row];
+            [self loadTrendingOrSearchGif:indexPath GifCell:cell GIFURL:stringURL];
             break;
         case 1:
-            //handle random
-            stringURL = @"";
+            [self loadRandomGif:indexPath GifCell:cell];
             break;
         case 2:
-            //handle handle searching
-            if(_searchBar.text){
-            stringURL = [self.myDataModel getSearchGIFURLWithOffest:indexPath.row withTerm: self.searchBar.text];
-            }else{
-                stringURL = [self.myDataModel getSearchGIFURLWithOffest:indexPath.row withTerm: @"cat"];
-            }
+        {
+            NSString* searchTerm = self.searchBar.text;
+            stringURL = [self.myDataModel getSearchGIFURLWithOffest:indexPath.row withTerm:searchTerm];
+            [self loadTrendingOrSearchGif:indexPath GifCell:cell GIFURL:stringURL];
             break;
+        }
         default:
             break;
     }
     
-    NSLog(stringURL);
+    
+    return cell;
+
+}
+
+-(void)loadTrendingOrSearchGif:(NSIndexPath*) indexPath GifCell:(GifCollectionViewCell*)cell GIFURL:(NSString*)stringURL{
     
     
     NSURL *url = [NSURL URLWithString: stringURL];
@@ -145,27 +158,45 @@
          {
              NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
                                                                       options:0
-                                                                    error:NULL];
-            
-             NSLog(@"%d", [greeting valueForKeyPath:@"pagination.count"]);
-             //if(![greeting valueForKeyPath:@"pagination.total_count"]){
+                                                                        error:NULL];
+             if([[greeting valueForKeyPath:@"pagination.count"] integerValue] == 0) {
+                 cell.imageView.image = [UIImage imageNamed:@"not-found"];
+             } else {
                  
                  NSString *path = [[greeting valueForKey:@"data"][0] valueForKeyPath: @"images.fixed_width.url"];
-                 
                  // load gif
                  FLAnimatedImage *myGif = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]];
-                 
                  cell.imageView.animatedImage = myGif;
-                 //[self.view addSubview:self.gifOneImageView]
-             //}
-            
+             }
+             
          }
      }];
-
-    
-    return cell;
+    return;
 }
 
+-(void)loadRandomGif:(NSIndexPath*) indexPath GifCell:(GifCollectionViewCell*)cell {
+    NSString* stringURL = [self.myDataModel getRandomGIFURL];
+    NSURL *url = [NSURL URLWithString: stringURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response,
+                                               NSData *data, NSError *connectionError)
+     {
+         if (data.length > 0 && connectionError == nil)
+         {
+             NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
+                                                                      options:0
+                                                                        error:NULL];
+             
+             NSString *path = [greeting valueForKeyPath:@"data.image_url"];
+             // load gif
+             FLAnimatedImage *myGif = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]];
+             cell.imageView.animatedImage = myGif;
+         }
+     }];
+    return;
+}
 
 /*
 #pragma mark - Navigation

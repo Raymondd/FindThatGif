@@ -13,11 +13,11 @@
 
 @interface DataModel : NSObject
 
-@property (nonatomic) NSInteger limit;
 @property (strong, nonatomic) NSMutableArray* history;
-@property (nonatomic) NSInteger offset;
-@property (strong, nonatomic) NSString* maturityRating;
+@property (nonatomic) NSInteger numToLoad;
+@property (nonatomic) NSInteger maturityRating;
 @property (nonatomic) BOOL shouldRefresh;
+@property (nonatomic) NSInteger refreshRate;
 
 
 +(DataModel*) sharedInstance;
@@ -26,4 +26,5 @@
 -(NSMutableArray*) getGIFS: (NSString*)searchTerm;
 -(NSString*) getTrendingGIFURLWithOffest:(NSInteger)row;
 -(NSString*) getSearchGIFURLWithOffest:(NSInteger)row withTerm:(NSString*)searchTerm;
+-(NSString*) getRandomGIFURL;
 @end

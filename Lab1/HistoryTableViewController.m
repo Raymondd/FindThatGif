@@ -7,9 +7,11 @@
 //
 
 #import "HistoryTableViewController.h"
+#import "DataModel.h"
 
 @interface HistoryTableViewController ()
 @property (strong, nonatomic) NSArray *searchList;
+@property (strong, nonatomic) DataModel *myDataModel;
 
 @end
 
@@ -24,12 +26,14 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    _searchList = @[@"poop", @"cats", @"sad cats"];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(DataModel*) myDataModel{
+    if(!_myDataModel){
+        _myDataModel = [DataModel sharedInstance];
+    }
+    
+    return _myDataModel;
 }
 
 #pragma mark - Table view data source
@@ -45,14 +49,14 @@
     // Return the number of rows in the section.
     
     //get number of search history thingies.
-    return _searchList.count;
+    return self.myDataModel.history.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath:indexPath];
     
-    cell.textLabel.text = _searchList[indexPath.row];
+    cell.textLabel.text =self.myDataModel.history[indexPath.row];
     
     return cell;
 }
