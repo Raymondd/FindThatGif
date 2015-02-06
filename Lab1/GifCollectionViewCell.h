@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FLAnimatedImageView.h"
+#import "FLAnimatedImage.h"
 
 @interface GifCollectionViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet FLAnimatedImageView *imageView;
 
 @end

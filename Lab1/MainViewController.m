@@ -113,13 +113,43 @@
      GifCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"myCell" forIndexPath:indexPath];
     
     // Configure the cell
-    cell.backgroundColor = [UIColor blueColor];
+    cell.backgroundColor = [UIColor whiteColor];
     //load th gid into here.>>
-    cell.imageView.image = [_myDataModel getTrendingGIFS][0];
+    //UIImage *image = [UIImage imageNamed:@"sloth1"];
+    
+
+    //FLAnimatedImage *image = [_myDataModel getTrendingGIFS][0];
+    //NSLog(@"There are %d gifs", [_myDataModel getTrendingGIFS].count);
+    //cell.imageView.image = image;
+    
+    NSString *stringURL = [self.myDataModel getTrendingGIFURLWithOffest:indexPath.row];
+    NSLog(stringURL);
+    
+    
+    NSURL *url = [NSURL URLWithString: stringURL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response,
+                                               NSData *data, NSError *connectionError)
+     {
+         if (data.length > 0 && connectionError == nil)
+         {
+             NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
+                                                                      options:0
+                                                                        error:NULL];
+             
+             NSString *path = [[greeting valueForKey:@"data"][0] valueForKeyPath: @"images.fixed_width.url"];
+             // load gif
+             FLAnimatedImage *myGif = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]];
+             cell.imageView.animatedImage = myGif;
+             //[self.view addSubview:self.gifOneImageView]
+         }
+     }];
+
     
     return cell;
 }
-
 
 
 /*

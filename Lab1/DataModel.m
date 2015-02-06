@@ -7,6 +7,10 @@
 //
 
 #import "DataModel.h"
+@interface DataModel()
+@property (strong, nonatomic) NSString* returnURL;
+
+@end
 
 @implementation DataModel
 
@@ -39,6 +43,7 @@
                            completionHandler:^(NSURLResponse *response,
                                                NSData *data, NSError *connectionError)
      {
+         NSLog(@"request completed");
          if (data.length > 0 && connectionError == nil)
          {
              NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
@@ -51,7 +56,6 @@
                  FLAnimatedImage *gif = [[FLAnimatedImage alloc] initWithAnimatedGIFData:gifData];
                  [gifs insertObject:gif atIndex:i];
              }
-             
 
          }
          
@@ -59,6 +63,11 @@
     return gifs;
 
     
+}
+
+-(NSString*) getTrendingGIFURLWithOffest:(NSInteger)row{
+    _returnURL = [NSString stringWithFormat: @"http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC&limit=1&offset=%ld", (long)row];
+    return _returnURL;
 }
 
 -(NSMutableArray*) getRandomGIFS{

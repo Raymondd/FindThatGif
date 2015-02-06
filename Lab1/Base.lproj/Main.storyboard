@@ -20,7 +20,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QHx-46-r4c">
                                 <rect key="frame" x="16" y="72" width="568" height="450"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HPB-G9-DLb">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="151" height="159"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -37,10 +37,24 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="151" height="159"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J8a-O9-ZhV" customClass="FLAnimatedImageView">
+                                                    <rect key="frame" x="8" y="8" width="135" height="143"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="J8a-O9-ZhV" firstAttribute="top" secondItem="pdX-wJ-vxr" secondAttribute="topMargin" id="4gf-vj-stR"/>
+                                            <constraint firstItem="J8a-O9-ZhV" firstAttribute="leading" secondItem="pdX-wJ-vxr" secondAttribute="leadingMargin" id="SEf-jS-iw1"/>
+                                            <constraint firstItem="J8a-O9-ZhV" firstAttribute="trailing" secondItem="pdX-wJ-vxr" secondAttribute="trailingMargin" id="cT6-eG-GV4"/>
+                                            <constraint firstItem="J8a-O9-ZhV" firstAttribute="bottom" secondItem="pdX-wJ-vxr" secondAttribute="bottomMargin" id="eT6-lS-nm0"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="J8a-O9-ZhV" id="ttx-QT-6nh"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
