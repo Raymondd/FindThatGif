@@ -13,12 +13,12 @@
 @interface MainViewController ()
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 - (IBAction)indexChanged:(UISegmentedControl *)sender;
-@property (weak, nonatomic) IBOutlet UILabel *identityLabel;
 @property (weak, nonatomic) IBOutlet UITextField *searchBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *settingsButton;
 @property (weak, nonatomic) IBOutlet UILabel *clock;
 @property (strong, nonatomic) DataModel *myDataModel;
 @property (strong, nonatomic) NSTimer *timer;
+@property (weak, nonatomic) IBOutlet UICollectionView *myCollView;
 @property int currentTime;
 @property int refreshTime;
 @end
@@ -29,9 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    //setting up idenitity lable for debugging purposes
-    self.identityLabel.text = @"Trending";
     
     //setting our delegate to dismiss keyboard
     self.searchBar.delegate = self;
@@ -67,6 +64,7 @@
     if(time < 1){
         //refresh the pictures
         _currentTime = 0;
+        [self.myCollectionView reloadData];
     }else{
         _currentTime++;
     }
@@ -75,25 +73,13 @@
 
 -(IBAction)indexChanged:(UISegmentedControl *)sender
 {
-    switch (self.segmentedControl.selectedSegmentIndex)
-    {
-        case 0:
-            self.identityLabel.text = @"Trending";
-            break;
-        case 1:
-            self.identityLabel.text = @"Random";
-            break;
-        case 2:
-            self.identityLabel.text = @"Search";
-            break;
-        default:
-            break;
-    }
+
+    [self.myCollectionView reloadData];
 }
 
 //function to close keybaord when return is hit
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
-    
+    [self.myCollectionView reloadData];
     [textField resignFirstResponder];
     return YES;
 }
@@ -122,22 +108,25 @@
     //NSLog(@"There are %d gifs", [_myDataModel getTrendingGIFS].count);
     //cell.imageView.image = image;
     
+    NSString *stringURL;
     switch (self.segmentedControl.selectedSegmentIndex)
     {
         case 0:
-            self.identityLabel.text = @"Trending";
+            //handle trending
+            stringURL = [self.myDataModel getTrendingGIFURLWithOffest:indexPath.row*2];
             break;
         case 1:
-            self.identityLabel.text = @"Random";
+            //handle random
+            stringURL = @"";
             break;
         case 2:
-            self.identityLabel.text = @"Search";
+            //handle handle searching
+            stringURL = [self.myDataModel getSearchGIFURLWithOffest:indexPath.row*2 withTerm: _searchBar.text];
             break;
         default:
             break;
     }
     
-    NSString *stringURL = [self.myDataModel getTrendingGIFURLWithOffest:indexPath.row];
     NSLog(stringURL);
     
     
