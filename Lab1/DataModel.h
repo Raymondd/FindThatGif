@@ -25,4 +25,5 @@
 -(NSMutableArray*) getRandomGIFS;
 -(NSMutableArray*) getGIFS: (NSString*)searchTerm;
 -(NSString*) getTrendingGIFURLWithOffest:(NSInteger)row;
+-(NSString*) getSearchGIFURLWithOffest:(NSInteger)row withTerm:(NSString*)searchTerm;
 @end

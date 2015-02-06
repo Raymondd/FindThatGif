@@ -70,6 +70,11 @@
     return _returnURL;
 }
 
+-(NSString*) getSearchGIFURLWithOffest:(NSInteger)row withTerm:(NSString*)searchTerm{
+    _returnURL = [NSString stringWithFormat: @"http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&limit=1&q=%@&offset=%ld", searchTerm, (long)row];
+    return _returnURL;
+}
+
 -(NSMutableArray*) getRandomGIFS{
     NSMutableArray* gifs = [NSMutableArray arrayWithCapacity:self.limit];
     return gifs;

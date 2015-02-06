@@ -122,6 +122,21 @@
     //NSLog(@"There are %d gifs", [_myDataModel getTrendingGIFS].count);
     //cell.imageView.image = image;
     
+    switch (self.segmentedControl.selectedSegmentIndex)
+    {
+        case 0:
+            self.identityLabel.text = @"Trending";
+            break;
+        case 1:
+            self.identityLabel.text = @"Random";
+            break;
+        case 2:
+            self.identityLabel.text = @"Search";
+            break;
+        default:
+            break;
+    }
+    
     NSString *stringURL = [self.myDataModel getTrendingGIFURLWithOffest:indexPath.row];
     NSLog(stringURL);
     
