@@ -108,7 +108,7 @@
     //NSLog(@"There are %d gifs", [_myDataModel getTrendingGIFS].count);
     //cell.imageView.image = image;
     
-    NSString *stringURL;
+    NSString *stringURL = @"_";
     switch (self.segmentedControl.selectedSegmentIndex)
     {
         case 0:
@@ -121,7 +121,11 @@
             break;
         case 2:
             //handle handle searching
-            stringURL = [self.myDataModel getSearchGIFURLWithOffest:indexPath.row*2 withTerm: _searchBar.text];
+            if(_searchBar.text){
+            stringURL = [self.myDataModel getSearchGIFURLWithOffest:indexPath.row withTerm: self.searchBar.text];
+            }else{
+                stringURL = [self.myDataModel getSearchGIFURLWithOffest:indexPath.row withTerm: @"cat"];
+            }
             break;
         default:
             break;
@@ -141,13 +145,20 @@
          {
              NSDictionary *greeting = [NSJSONSerialization JSONObjectWithData:data
                                                                       options:0
-                                                                        error:NULL];
-             
-             NSString *path = [[greeting valueForKey:@"data"][0] valueForKeyPath: @"images.fixed_width.url"];
-             // load gif
-             FLAnimatedImage *myGif = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]];
-             cell.imageView.animatedImage = myGif;
-             //[self.view addSubview:self.gifOneImageView]
+                                                                    error:NULL];
+            
+             NSLog(@"%d", [greeting valueForKeyPath:@"pagination.count"]);
+             //if(![greeting valueForKeyPath:@"pagination.total_count"]){
+                 
+                 NSString *path = [[greeting valueForKey:@"data"][0] valueForKeyPath: @"images.fixed_width.url"];
+                 
+                 // load gif
+                 FLAnimatedImage *myGif = [[FLAnimatedImage alloc] initWithAnimatedGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]];
+                 
+                 cell.imageView.animatedImage = myGif;
+                 //[self.view addSubview:self.gifOneImageView]
+             //}
+            
          }
      }];
 
